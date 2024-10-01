@@ -47,11 +47,15 @@ public class MyPanel extends JPanel
       drawFlower(g,400,450);
     }
     for(int i = 0; i < Coyote.size(); i++){
-
-      drawDog(g,Coyote.get(i).getX(), Coyote.get(i).getY());
+        
+      coordPair current = Coyote.get(i);
+      System.out.println(current.getX() + " " +  current.getY());
+      drawDog(g,current.getX(), current.getY());
+      
     }
+    
     for(int i = 0; i < Cloud.size(); i++){
-
+      
       drawCloud(Cloud.get(i).getX(), Cloud.get(i).getY(), g);
     }
     for(int i =0; i < Flower.size(); i++){
@@ -183,7 +187,7 @@ public class MyPanel extends JPanel
 
     Color snowWhite = new Color(255, 254, 252);
 
-    
+
 
 
 
@@ -212,24 +216,31 @@ public class MyPanel extends JPanel
     g.setColor(snowWhite);
     g.fillPolygon(x2, y2, 3);
       }
-    public void addItemsToList(int x, int y, String d){
-
+    public void addItemsToList(int xx, int yy, String d){
+      int itemx= xx;
+      int itemy=yy;
+      System.out.println(itemx);
+      System.out.println(itemy);
+      coordPair newAddition = new coordPair(itemx, itemy);
       switch(d){
         case "Flower":
-          Flower.add(new coordPair(x,y));
+        
+          Flower.add(newAddition);
           break;
         case "Cloud":
-          Cloud.add(new coordPair(x,y));
+          Cloud.add(newAddition);
           break;
         case "Coyote":
-          Coyote.add(new coordPair(x,y));
+          Coyote.add(newAddition);
           break;
         case "Berry Bush":
-          BerryBush.add(new coordPair(x,y));
+          BerryBush.add(newAddition);
           break;
         case "Tree":
-          Trees.add(new coordPair(x,y));
+          Trees.add(newAddition);
           break;
+        default:
+          System.out.println("Nothing added");
       }
 
     }

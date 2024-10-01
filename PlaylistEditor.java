@@ -56,31 +56,45 @@ public class PlaylistEditor extends JFrame {
         
         // add buttons and their actions
         //sorts
-        delete.addActionListener(new ActionListener(){
+        addItems.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedCriteria = (String) optionsBox.getSelectedItem();
                 //sorts based on option from the dropdown box added. 
                 switch (selectedCriteria) {
                     case "Coyote":
-                        
+                        x = rand.nextInt(600)+100;
+                        y = rand.nextInt(700-400+1)+400;
+                        System.out.println(x);
+                        System.out.println(y);
+                        c.addItemsToList(x,y,"Coyote");
                         break;
                     case "Berry Bush":
-                        
+                        x = rand.nextInt(700);
+                        y = rand.nextInt(700-400+1)+400;
+                        c.addItemsToList(x,y,"Berry Bush");
                         break;
                     case "Flower":
-                        
+                        x = rand.nextInt(700);
+                        y = rand.nextInt(700-400+1)+400;
+                        c.addItemsToList(x,y,"Flower");
                         break;
                     case "Cloud":
+                        x = rand.nextInt(700);
+                        y = rand.nextInt(700-400+1)+400;
+                        c.addItemsToList(x,y,"Cloud");
                         break;
                     case "Tree":
+                        x = rand.nextInt(700);
+                        y = rand.nextInt(700-400+1)+400;
+                        c.addItemsToList(x,y,"Tree");
                         break;
                     
                 }
                 updatePanel();
             }
         });
-        addItems.addActionListener(new ActionListener() {
+        delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedCriteria = (String) optionsBox.getSelectedItem();
