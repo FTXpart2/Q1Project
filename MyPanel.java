@@ -12,51 +12,71 @@ public class MyPanel extends JPanel
   int cloudX, cloudY;
   int choice, selection;
   int runner;
+
+  DLList<coordPair> Coyote;
+  DLList<coordPair> BerryBush;
+  DLList<coordPair> Cloud;
+  DLList<coordPair> Flower;
+  DLList<coordPair> Trees;
   
   public MyPanel(){
     choice = 1;
-    selection = 1;
+    selection = 3;
+    Coyote = new DLList<coordPair>();
+    Trees = new DLList<coordPair>();
+    Cloud = new DLList<coordPair>();
+    Flower = new DLList<coordPair>();
+    BerryBush = new DLList<coordPair>();
   }
   public Dimension getPreferredSize() {
-        return new Dimension(800,600);
+        return new Dimension(1000,600);
     }
 
 	// Gets called automatically
 	public void paintComponent(Graphics g)
 	{
-		super.paintComponent(g);	//Optional as we are drawing entire screen
+    super.paintComponent(g);	//Optional as we are drawing entire screen
     drawSky(g);
     drawMountain(g);
-    Tree(600, 300);
-    drawTree(g);
-    Cloud(0,0);
-    drawCloud(g);
-    drawBird(g);
-    drawHouse(g);
-    Tree(550,325);
-    drawTree(g);
-    Tree(650,275);
-    drawTree(g);
+    drawCloud(0,0,g);
+    drawTree(650, 275, g);
     drawDog(g,200,400);
     if(selection == 3 || selection == 2){
       drawFlower(g,200,500);
       drawFlower(g,300,550);
       drawFlower(g,400,450);
     }
+    for(int i = 0; i < Coyote.size(); i++){
+
+      drawDog(g,Coyote.get(i).getX(), Coyote.get(i).getY());
+    }
+    for(int i = 0; i < Cloud.size(); i++){
+
+      drawCloud(Cloud.get(i).getX(), Cloud.get(i).getY(), g);
+    }
+    for(int i =0; i < Flower.size(); i++){
+      drawCloud(Cloud.get(i).getX(), Cloud.get(i).getY(), g);
+    }
+    for(int i =0; i < BerryBush.size(); i++){
+      
+    }
+    for(int i =0; i < Trees.size(); i++){
+      drawTree(Trees.get(i).getX(), Trees.get(i).getY(), g);
+    }
+
+		
     
     
  
   }
-  public void Tree(int xL, int yL){
-		
-    x = xL;
-    
-		y = yL;
-	}
+
 
     // Custom draw function to draw tree at (x,y)
-  public void drawTree(Graphics g)
+  public void drawTree(int xL, int yL, Graphics g)
     {
+      x = xL;
+    
+      y = yL;
 		// Draw brown trunk first, so it is behind
         Color trunkBrown = new Color(128, 64, 0);
         g.setColor(trunkBrown);
@@ -113,14 +133,11 @@ public class MyPanel extends JPanel
     g.fillRect(0,400,800, 200);
   }
   }
-  public void Cloud(int x, int y){
-    cloudX=x;
-    cloudY=y;
-  }
-  public void drawCloud(Graphics g){
+  public void drawCloud(int x, int y, Graphics g){
 		// x = 350
 		// y = 60
-
+    cloudX=x;
+    cloudY=y;
 		// Create cloud - circle #1 through #5
 		g.setColor(Color.white);	// Use default white
         g.fillOval(cloudX,cloudY+40,60,60);
@@ -130,24 +147,8 @@ public class MyPanel extends JPanel
         g.fillOval(cloudX+60,cloudY,60,60);
     
 	}
-  public void drawBird(Graphics g){
-
-		// Draw bird
-		g.setColor(Color.black);
-		//drawArc(int x, int y, int width, int length, int startAngleDegrees, int additionanDegreesFromStart)
-		g.drawArc(200,250,100,100,60,60);
-		g.drawArc(200+50,250,100,100,60,60);
-	}
-  public void drawHouse(Graphics g){
-    //house
-    Color house = new Color(117, 104, 100);
-    g.setColor(house);
-    g.fillRect(400,300,100,100);
-    g.fillPolygon(new int[]{400,450,500}, new int[] {300, 250, 300},3);
-    Color window = new Color(148, 229, 235);
-    g.setColor(window);
-    g.fillRect(400+35,300+35,35,35);
-  }
+ 
+ 
   public void drawFlower(Graphics g, int fx, int fy){
     //flower
     g.setColor(new Color(0,200,0));
@@ -179,19 +180,60 @@ public class MyPanel extends JPanel
   public void drawMountain(Graphics g)
     {
     Color rockGrey = new Color(204, 199, 184);
+
+    Color snowWhite = new Color(255, 254, 252);
+
+    
+
+
+
+
     int[] xCoords = {600,750,250};
 	  int[] yCoords = {30,400,400};
     g.setColor(rockGrey);
     g.fillPolygon(xCoords, yCoords, 3);
 
-    Color snowWhite = new Color(255, 254, 252);
+    
 
     int[] x = {600,630,535};
 	  int[] y = {30,100,100};
     g.setColor(snowWhite);
     g.fillPolygon(x, y, 3);
+
+    int[] xCoords2 = {-600+600,-750+600,-250+600};
+	  int[] yCoords2 = {30,400,400};
+    g.setColor(rockGrey);
+    g.fillPolygon(xCoords2, yCoords2, 3);
+
+    g.setColor(snowWhite);
+
+    int[] x2 = {-600+600,-630+600,-535+600};
+	  int[] y2 = {30,100,100};
+    g.setColor(snowWhite);
+    g.fillPolygon(x2, y2, 3);
+      }
+    public void addItemsToList(int x, int y, String d){
+
+      switch(d){
+        case "Flower":
+          Flower.add(new coordPair(x,y));
+          break;
+        case "Cloud":
+          Cloud.add(new coordPair(x,y));
+          break;
+        case "Coyote":
+          Coyote.add(new coordPair(x,y));
+          break;
+        case "Berry Bush":
+          BerryBush.add(new coordPair(x,y));
+          break;
+        case "Tree":
+          Trees.add(new coordPair(x,y));
+          break;
       }
 
+    }
+ 
 
   
 }
