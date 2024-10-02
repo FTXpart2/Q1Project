@@ -3,7 +3,7 @@ import java.awt.Dimension;	// Setting dimensions of JPanel
 import java.awt.Graphics;	// Using Graphics object to draw
 import java.awt.Color;		// Import Color to use colors
 import java.awt.Polygon;
-
+import java.util.Random;
 
 
 public class MyPanel extends JPanel
@@ -12,7 +12,7 @@ public class MyPanel extends JPanel
   int cloudX, cloudY;
   int choice, selection;
   int runner;
-
+  Random rand;
   DLList<coordPair> Coyote;
   DLList<coordPair> BerryBush;
   DLList<coordPair> Cloud;
@@ -20,6 +20,7 @@ public class MyPanel extends JPanel
   DLList<coordPair> Trees;
   
   public MyPanel(){
+    rand = new Random();
     choice = 1;
     selection = 3;
     Coyote = new DLList<coordPair>();
@@ -243,6 +244,32 @@ public class MyPanel extends JPanel
           System.out.println("Nothing added");
       }
 
+    }
+    public void deleteItems(String x){
+
+      switch (x) {
+        case "Coyote":
+            int i = rand.nextInt(Coyote.size());
+            Coyote.remove(i)
+            break;
+        case "Berry Bush":
+          int i = rand.nextInt(Coyote.size());
+          Coyote.remove(i)
+          break;
+        case "Flower":
+          int i = rand.nextInt(Flower.size());
+          Flower.remove(i);
+            break;
+        case "Cloud":
+          int i = rand.nextInt(Cloud.size());
+          Cloud.remove(i)
+          
+            break;
+        case "Tree":
+          int i = rand.nextInt(Trees.size());
+          Trees.remove(i)
+            
+            break;
     }
  
 
