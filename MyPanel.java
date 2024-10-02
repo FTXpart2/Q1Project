@@ -40,13 +40,7 @@ public class MyPanel extends JPanel
     drawSky(g);
     drawMountain(g);
     drawCloud(0,0,g);
-    drawTree(650, 275, g);
-    drawDog(g,200,400);
-    if(selection == 3 || selection == 2){
-      drawFlower(g,200,500);
-      drawFlower(g,300,550);
-      drawFlower(g,400,450);
-    }
+    
     for(int i = 0; i < Coyote.size(); i++){
         
       coordPair current = Coyote.get(i);
@@ -60,10 +54,10 @@ public class MyPanel extends JPanel
       drawCloud(Cloud.get(i).getX(), Cloud.get(i).getY(), g);
     }
     for(int i =0; i < Flower.size(); i++){
-      drawCloud(Cloud.get(i).getX(), Cloud.get(i).getY(), g);
+      drawFlower(g,Flower.get(i).getX(), Flower.get(i).getY());
     }
     for(int i =0; i < BerryBush.size(); i++){
-      
+      drawBerries(g, BerryBush.get(i).getX(), BerryBush.get(i).getY());
     }
     for(int i =0; i < Trees.size(); i++){
       drawTree(Trees.get(i).getX(), Trees.get(i).getY(), g);
@@ -217,6 +211,15 @@ public class MyPanel extends JPanel
     g.setColor(snowWhite);
     g.fillPolygon(x2, y2, 3);
       }
+      public void drawBerries(Graphics g, int cx, int cy) 
+      { 
+          g.setColor(new Color(0, 115, 0));
+          g.fillOval(cx-30, cy-50, 50, 70);
+          g.setColor(new Color(50, 26, 61));
+          g.fillOval(cx-20, cy-35, 5, 5);
+          g.fillOval(cx-10, cy-25,5,5);
+          g.fillOval(cx, cy-5,5,5);
+      }
     public void addItemsToList(int xx, int yy, String d){
       int itemx= xx;
       int itemy=yy;
@@ -237,7 +240,7 @@ public class MyPanel extends JPanel
         case "Berry Bush":
           BerryBush.add(newAddition);
           break;
-        case "Tree":
+        case "Trees":
           Trees.add(newAddition);
           break;
         default:
@@ -246,31 +249,57 @@ public class MyPanel extends JPanel
 
     }
     public void deleteItems(String x){
-
+      int i =0;
       switch (x) {
         case "Coyote":
-            int i = rand.nextInt(Coyote.size());
-            Coyote.remove(i)
+            i = rand.nextInt(Coyote.size());
+            Coyote.remove(i);
             break;
         case "Berry Bush":
-          int i = rand.nextInt(Coyote.size());
-          Coyote.remove(i)
+          i = rand.nextInt(Coyote.size());
+          BerryBush.remove(i);
           break;
         case "Flower":
-          int i = rand.nextInt(Flower.size());
+          i = rand.nextInt(Flower.size());
           Flower.remove(i);
             break;
         case "Cloud":
-          int i = rand.nextInt(Cloud.size());
-          Cloud.remove(i)
+          i = rand.nextInt(Cloud.size());
+          Cloud.remove(i);
           
             break;
-        case "Tree":
-          int i = rand.nextInt(Trees.size());
-          Trees.remove(i)
+        case "Trees":
+          i = rand.nextInt(Trees.size());
+          Trees.remove(i);
             
             break;
     }
+  }
+  public void randomizeItems(){
+
+  }
+  
+  public void clear(){
+    for(int i = 0; i < Coyote.size(); i++){
+        
+      Coyote.remove(i);
+    }
+    
+    for(int i = 0; i < Cloud.size(); i++){
+      
+      Cloud.remove(i);
+    }
+    for(int i =0; i < Flower.size(); i++){
+      Flower.remove(i);
+    }
+    for(int i =0; i < BerryBush.size(); i++){
+      BerryBush.remove(i);
+    }
+    for(int i =0; i < Trees.size(); i++){
+      Trees.remove(i);
+    }
+
+  }
  
 
   

@@ -84,10 +84,10 @@ public class PlaylistEditor extends JFrame {
                         y = rand.nextInt(700-400+1)+400;
                         c.addItemsToList(x,y,"Cloud");
                         break;
-                    case "Tree":
+                    case "Trees":
                         x = rand.nextInt(700);
                         y = rand.nextInt(700-400+1)+400;
-                        c.addItemsToList(x,y,"Tree");
+                        c.addItemsToList(x,y,"Trees");
                         break;
                     
                 }
@@ -101,17 +101,19 @@ public class PlaylistEditor extends JFrame {
                 //sorts based on option from the dropdown box added. 
                 switch (selectedCriteria) {
                     case "Coyote":
-                        
+                        c.deleteItems("Coyote");
                         break;
                     case "Berry Bush":
-                        
+                        c.deleteItems("Berry Bush");
                         break;
                     case "Flower":
-                        
+                        c.deleteItems("Flower");
                         break;
                     case "Cloud":
+                        c.deleteItems("Cloud");
                         break;
                     case "Tree":
+                        c.deleteItems("Trees");
                         break;
                     
                 }
