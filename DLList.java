@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 @SuppressWarnings("unchecked")
-public class DLList<E> {
+public class DLList<E> implements Serializable {
   private Node<E> head;
   private Node<E> tail;
   private int size;
-
+  private static final long serialVersionUID = 1L;
   public DLList() {
     head = new Node<E>(null);
     tail = new Node<E>(null);

@@ -11,17 +11,26 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.*;
 import java.util.Random;
-
-public class PlaylistEditor extends JFrame {
-
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+public class Editor extends JFrame {
     private JPanel panel;
     private MyPanel c;
     private JComboBox<String> optionsBox;
     private int x, y;
     private Random rand;
-    public PlaylistEditor() {
+    public Editor() {
+        
+        c = MyPanel.loadData("data.ser");
+        if (c == null) {
+            c = new MyPanel(); // Create a new instance if loading fails
+        }
         rand = new Random();
-        setTitle("Grand Teton");
+        setTitle("Grand Teton (Autosave)");
         setSize(800, 670);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -51,8 +60,7 @@ public class PlaylistEditor extends JFrame {
         add(new JScrollPane(panel), BorderLayout.CENTER);
 
         // update the panel with initial songs
-        
-        c = new MyPanel();
+        pack();
         add(c, BorderLayout.SOUTH);
         
         // add buttons and their actions
@@ -138,6 +146,18 @@ public class PlaylistEditor extends JFrame {
             }
             
         });
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
+
+        // Add a window listener to save data on close
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                c.saveData("data.ser"); // Save data when closing
+            }
+        });
+        pack();
     }
     
 
@@ -150,7 +170,10 @@ public class PlaylistEditor extends JFrame {
         c.repaint();
         panel.revalidate(); // Refresh the layout
         panel.repaint();    // Redraw the panel
+        
     }
+    
+
 
 
 

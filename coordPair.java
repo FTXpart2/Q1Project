@@ -1,6 +1,8 @@
+import java.io.Serializable;
 import java.util.Random;
 
-public class coordPair {
+public class coordPair implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Random rand;
     private int x,y;
     public coordPair(int xx, int yy){

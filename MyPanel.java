@@ -3,11 +3,18 @@ import java.awt.Dimension;	// Setting dimensions of JPanel
 import java.awt.Graphics;	// Using Graphics object to draw
 import java.awt.Color;		// Import Color to use colors
 import java.awt.Polygon;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Random;
+import java.io.Serializable;
 
 
-public class MyPanel extends JPanel
+
+public class MyPanel extends JPanel implements Serializable
 {
+  private static final long serialVersionUID = 1L;
   int x,y;
   int cloudX, cloudY;
   int choice, selection;
@@ -20,6 +27,7 @@ public class MyPanel extends JPanel
   DLList<coordPair> Trees;
   coordPair test;
   public MyPanel(){
+    
     rand = new Random();
     choice = 1;
     selection = 3;
@@ -30,7 +38,7 @@ public class MyPanel extends JPanel
     BerryBush = new DLList<coordPair>();
   }
   public Dimension getPreferredSize() {
-        return new Dimension(1000,600);
+        return new Dimension(800,550);
     }
 
 	// Gets called automatically
@@ -43,7 +51,7 @@ public class MyPanel extends JPanel
     for(int i = 0; i < Coyote.size(); i++){
         
       coordPair current = Coyote.get(i);
-      System.out.println(current.getX() + " " +  current.getY());
+    
       drawDog(g,current.getX(), current.getY());
       
     }
@@ -61,6 +69,7 @@ public class MyPanel extends JPanel
     for(int i =0; i < Trees.size(); i++){
       drawTree(Trees.get(i).getX(), Trees.get(i).getY(), g);
     }
+    
 
 		
     
@@ -302,7 +311,7 @@ public class MyPanel extends JPanel
       test = Coyote.get(i);
       test.randomize(700,200,400);
       Coyote.set(i, test);
-      System.out.println(Coyote.get(i));
+    
     }
     
     for(int i = 0; i < Cloud.size(); i++){
@@ -353,6 +362,23 @@ public class MyPanel extends JPanel
       Trees.remove(i);
     }
 
+  }
+  public void saveData(String filename) {
+    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
+        out.writeObject(this);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+public static MyPanel loadData(String filename) {
+    try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
+        return (MyPanel) in.readObject();
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    }
+  
   }
  
 
