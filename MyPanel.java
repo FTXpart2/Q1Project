@@ -39,7 +39,6 @@ public class MyPanel extends JPanel
     super.paintComponent(g);	//Optional as we are drawing entire screen
     drawSky(g);
     drawMountain(g);
-    drawCloud(0,0,g);
     
     for(int i = 0; i < Coyote.size(); i++){
         
@@ -276,26 +275,46 @@ public class MyPanel extends JPanel
     }
   }
   public void randomizeItems(){
-
-  }
-  
-  public void clear(){
     for(int i = 0; i < Coyote.size(); i++){
         
-      Coyote.remove(i);
+      Coyote.get(i).randomize(800,400,700);
+      System.out.println(Coyote.get(i));
     }
     
     for(int i = 0; i < Cloud.size(); i++){
       
-      Cloud.remove(i);
+      Cloud.get(i).randomize(800,0,100);
     }
     for(int i =0; i < Flower.size(); i++){
-      Flower.remove(i);
+      Flower.get(i).randomize(800,400,700);
     }
     for(int i =0; i < BerryBush.size(); i++){
-      BerryBush.remove(i);
+      BerryBush.get(i).randomize(800,400,700);
     }
     for(int i =0; i < Trees.size(); i++){
+      Trees.get(i).randomize(800,400,700);
+    }
+  }
+  
+  public void clear(){
+    for(int i = Coyote.size()-1; i >=0; i--){
+      
+      Coyote.remove(i);
+     
+
+    }
+    
+    for(int i = Cloud.size()-1; i >=0; i--){
+      
+      Cloud.remove(i);
+    }
+    for(int i = Flower.size()-1; i>=0; i--){
+      Flower.remove(i);
+    }
+    for(int i= BerryBush.size()-1;i>=0;i--){
+      BerryBush.remove(i);
+    }
+    for(int i = Trees.size()-1; i>=0; i--){
       Trees.remove(i);
     }
 

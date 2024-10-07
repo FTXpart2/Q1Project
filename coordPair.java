@@ -17,9 +17,9 @@ public class coordPair {
     public String toString(){
         return "X: " + x + " Y: " + y;
     }
-    public void randomize(int x, int yrange, int y){
-        x = rand.nextInt(x);
-        y= rand.nextInt(y-yrange+1)+y;
+    public void randomize(int xz, int yrange, int yz){
+        x = rand.nextInt(xz);
+        y = rand.nextInt(yz-yrange+1)+yz;
     }
     
 }

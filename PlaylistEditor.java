@@ -34,7 +34,7 @@ public class PlaylistEditor extends JFrame {
         JPanel controlPanel = new JPanel();
         JButton addItems = new JButton("Add Item");
         JButton delete = new JButton("Delete Randomly");
-        
+        JButton clear = new JButton("Clear Screen");
         // add a dropdown for sorting criteria
         optionsBox = new JComboBox<>(new String[]{"Coyote","Flower","Cloud","Trees","Berry Bush"});
         JButton shuffle = new JButton("Randomize");
@@ -44,7 +44,7 @@ public class PlaylistEditor extends JFrame {
         controlPanel.add(delete);
         
         controlPanel.add(shuffle);
-        
+        controlPanel.add(clear);
         add(controlPanel, BorderLayout.NORTH);
         // makes it scrollable if playlist extends past.
         add(new JScrollPane(panel), BorderLayout.CENTER);
@@ -81,7 +81,7 @@ public class PlaylistEditor extends JFrame {
                         break;
                     case "Cloud":
                         x = rand.nextInt(700);
-                        y = rand.nextInt(700-400+1)+400;
+                        y = rand.nextInt(100);
                         c.addItemsToList(x,y,"Cloud");
                         break;
                     case "Trees":
@@ -125,8 +125,17 @@ public class PlaylistEditor extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
+                c.randomizeItems();
                 updatePanel();
             }
+        });
+        clear.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                c.clear();
+                updatePanel();
+            }
+            
         });
     }
     
