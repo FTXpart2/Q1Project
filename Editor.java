@@ -146,6 +146,7 @@ public class Editor extends JFrame {
             }
             
         });
+        //saves code when windows close
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);

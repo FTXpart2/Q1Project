@@ -10,15 +10,19 @@ public class coordPair implements Serializable {
         x=xx;
         y=yy;
     }
+
+    //returnx
     public int getX(){
         return x;
     }
+    //returny
     public int getY(){
         return y;
     }
     public String toString(){
         return "X: " + x + " Y: " + y;
     }
+    //randomizes the coordinates
     public void randomize(int xz, int yrange, int yz){
         x = rand.nextInt(xz);
         y = rand.nextInt(yz-yrange+1)+yz;

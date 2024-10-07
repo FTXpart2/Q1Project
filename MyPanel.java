@@ -31,6 +31,7 @@ public class MyPanel extends JPanel implements Serializable
     rand = new Random();
     choice = 1;
     selection = 3;
+    //coordinate pairs as Nodes to help draw out the items
     Coyote = new DLList<coordPair>();
     Trees = new DLList<coordPair>();
     Cloud = new DLList<coordPair>();
@@ -183,7 +184,7 @@ public class MyPanel extends JPanel implements Serializable
     g.setColor(new Color(31, 29, 28));
     g.fillRect(x+60,y,10,5);
   }
-  //Challenge for polygon
+  //drwasmountains
   public void drawMountain(Graphics g)
     {
     Color rockGrey = new Color(204, 199, 184);
@@ -241,6 +242,7 @@ public class MyPanel extends JPanel implements Serializable
 
 
       }
+      //drwas berries
       public void drawBerries(Graphics g, int cx, int cy) 
       { 
           g.setColor(new Color(0, 115, 0));
@@ -250,6 +252,8 @@ public class MyPanel extends JPanel implements Serializable
           g.fillOval(cx-10, cy-25,5,5);
           g.fillOval(cx, cy-5,5,5);
       }
+
+      //adds item to the dllist
     public void addItemsToList(int xx, int yy, String d){
       int itemx= xx;
       int itemy=yy;
@@ -279,6 +283,8 @@ public class MyPanel extends JPanel implements Serializable
       }
 
     }
+
+    //deletes randomly
     public void deleteItems(String x){
       int i =0;
       switch (x) {
@@ -306,6 +312,8 @@ public class MyPanel extends JPanel implements Serializable
             break;
     }
   }
+
+  //Randomizes everything
   public void randomizeItems(){
     for(int i = 0; i < Coyote.size(); i++){
       test = Coyote.get(i);
@@ -339,7 +347,7 @@ public class MyPanel extends JPanel implements Serializable
 
     repaint();
   }
-  
+  //clears screen
   public void clear(){
     for(int i = Coyote.size()-1; i >=0; i--){
       
@@ -363,6 +371,8 @@ public class MyPanel extends JPanel implements Serializable
     }
 
   }
+
+  //save code
   public void saveData(String filename) {
     try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
         out.writeObject(this);
