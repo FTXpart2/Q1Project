@@ -18,7 +18,7 @@ public class MyPanel extends JPanel
   DLList<coordPair> Cloud;
   DLList<coordPair> Flower;
   DLList<coordPair> Trees;
-  
+  coordPair test;
   public MyPanel(){
     rand = new Random();
     choice = 1;
@@ -209,6 +209,28 @@ public class MyPanel extends JPanel
 	  int[] y2 = {30,100,100};
     g.setColor(snowWhite);
     g.fillPolygon(x2, y2, 3);
+
+    int[] xCoords3 = {200, 50, 650};
+    int[] yCoords3= {30,400,400};
+    g.setColor(rockGrey);
+    g.fillPolygon(xCoords3, yCoords3, 3);
+    
+    g.setColor(snowWhite);
+    int[] x3 = {200,-30+200, -535+600+223};
+    int[] y3 = {30,100,100};
+    g.fillPolygon(x3,y3,3);
+
+    int[] xCoords4 = {600+120, 750+120, 250+120};
+    int[] yCoords4 = {30,400,400};
+    g.setColor(rockGrey);
+    g.fillPolygon(xCoords4, yCoords4, 3);
+
+    g.setColor(snowWhite);
+    int[] x4 = {600+120,630+120,535+120};
+    int[] y4 = {30,100,100};
+    g.fillPolygon(x4,y4,3);
+
+
       }
       public void drawBerries(Graphics g, int cx, int cy) 
       { 
@@ -229,6 +251,7 @@ public class MyPanel extends JPanel
         case "Flower":
         
           Flower.add(newAddition);
+          
           break;
         case "Cloud":
           Cloud.add(newAddition);
@@ -276,24 +299,36 @@ public class MyPanel extends JPanel
   }
   public void randomizeItems(){
     for(int i = 0; i < Coyote.size(); i++){
-        
-      Coyote.get(i).randomize(800,400,700);
+      test = Coyote.get(i);
+      test.randomize(700,200,400);
+      Coyote.set(i, test);
       System.out.println(Coyote.get(i));
     }
     
     for(int i = 0; i < Cloud.size(); i++){
+      test = Cloud.get(i);
+      test.randomize(700,0,50);
+      Cloud.set(i, test);
       
-      Cloud.get(i).randomize(800,0,100);
     }
     for(int i =0; i < Flower.size(); i++){
-      Flower.get(i).randomize(800,400,700);
+      test = Flower.get(i);
+      test.randomize(700,200,400);
+      Flower.set(i,test);
+      
     }
     for(int i =0; i < BerryBush.size(); i++){
-      BerryBush.get(i).randomize(800,400,700);
+      test= BerryBush.get(i);
+      test.randomize(700,200,400);
+      BerryBush.set(i, test);
     }
     for(int i =0; i < Trees.size(); i++){
-      Trees.get(i).randomize(800,400,700);
+      test = Trees.get(i);
+      test.randomize(700,200,400);
+      Trees.set(i, test);
     }
+
+    repaint();
   }
   
   public void clear(){

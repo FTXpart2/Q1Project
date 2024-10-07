@@ -43,8 +43,9 @@ public class PlaylistEditor extends JFrame {
         controlPanel.add(addItems);
         controlPanel.add(delete);
         
-        controlPanel.add(shuffle);
+        
         controlPanel.add(clear);
+        controlPanel.add(shuffle);
         add(controlPanel, BorderLayout.NORTH);
         // makes it scrollable if playlist extends past.
         add(new JScrollPane(panel), BorderLayout.CENTER);
@@ -64,19 +65,19 @@ public class PlaylistEditor extends JFrame {
                 switch (selectedCriteria) {
                     case "Coyote":
                         x = rand.nextInt(600)+100;
-                        y = rand.nextInt(700-400+1)+400;
+                        y = rand.nextInt(650-400+1)+400;
                         System.out.println(x);
                         System.out.println(y);
                         c.addItemsToList(x,y,"Coyote");
                         break;
                     case "Berry Bush":
                         x = rand.nextInt(700);
-                        y = rand.nextInt(700-400+1)+400;
+                        y = rand.nextInt(650-400+1)+400;
                         c.addItemsToList(x,y,"Berry Bush");
                         break;
                     case "Flower":
                         x = rand.nextInt(700);
-                        y = rand.nextInt(700-400+1)+400;
+                        y = rand.nextInt(650-400+1)+400;
                         c.addItemsToList(x,y,"Flower");
                         break;
                     case "Cloud":
@@ -86,7 +87,7 @@ public class PlaylistEditor extends JFrame {
                         break;
                     case "Trees":
                         x = rand.nextInt(700);
-                        y = rand.nextInt(700-400+1)+400;
+                        y = rand.nextInt(650-400+1)+400;
                         c.addItemsToList(x,y,"Trees");
                         break;
                     
@@ -112,7 +113,7 @@ public class PlaylistEditor extends JFrame {
                     case "Cloud":
                         c.deleteItems("Cloud");
                         break;
-                    case "Tree":
+                    case "Trees":
                         c.deleteItems("Trees");
                         break;
                     
